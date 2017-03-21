@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -78,48 +77,50 @@ class Header extends Component{
 }
 
 class Content extends Component{
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [],
-      count: 0,
-    };
-    this.updateMystatus =this.updateMystatus.bind(this);
-    this.forceUpdateRandomNumber = this.forceUpdateRandomNumber.bind(this);
-    this.findMyDomNode = this.findMyDomNode.bind(this);
-  }
-
-  updateMystatus() {
-    var count = this.state.count;
-    count++;
-    var item = "Click - "+count;
-    var myArray = this.state.data;
-    myArray.push(item);
-    this.setState({data: myArray, count: count});
-  }
-  forceUpdateRandomNumber(){
-    this.forceUpdate();
-  }
-  findMyDomNode(){
-    var myDiv = document.getElementById('myDiv');
-    ReactDOM.findDOMNode(myDiv).style.color = 'yellow';
-  }
   render() {
     return (
+      <div>
         <div className="App-intro">
-          <h1>Component API!</h1>
-          <p>Mwarukason Dashbord Over API Views</p>
-          <button onClick = {this.updateMystatus}>CLICK ME</button>
-          <h4>State Data: {this.state.data}</h4>
-          <button onClick={this.forceUpdateRandomNumber}>Random Number</button>
-          <h4>Random Number: {Math.random()}</h4>
-          <button onClick={this.findMyDomNode}>Find My Node</button>
-          <div id="myDiv">This is My DIV</div>
+          <h1>Props Validations!</h1>
+          <p>Mwarukason Dashbord Prop Validation Views</p>
+        </div>
+        <div>
+          <h4>Array: {this.props.propArray}</h4>
+          <h4>Boolean: {this.props.propBool ? "True" : "False"}</h4>
+          <h4>Function: {this.props.propFunc(6)}</h4>
+          <h4>String: {this.props.propString}</h4>
+          <h4>Number: {this.props.propNumber}</h4>
+          <h4>Object: {this.props.propObject.objectName1}</h4>
+          <h4>Object: {this.props.propObject.objectName2}</h4>
+          <h4>Object: {this.props.propObject.objectName3}</h4>
+        </div>
       </div>
     );
   }
 }
 
+
+Content.propTypes = {
+  propArray: React.PropTypes.array.isRequired,
+  propBool: React.PropTypes.bool.isRequired,
+  propFunc: React.PropTypes.func,
+  propNumber: React.PropTypes.number,
+  propString: React.PropTypes.string,
+  propObject: React.PropTypes.object
+}
+
+//default values assigned from created propoerties
+Content.defaultProps = {
+  propArray: [2,5,3,4,6],
+  propBool: true,
+  propFunc: function(e){return e},
+  propNumber: 27,
+  propString: "AMRI",
+  propObject: {
+    objectName1: "Nyani",
+    objectName2: "Chura",
+    objectName3: "Tembo"
+  }
+}
 
 export default App;
