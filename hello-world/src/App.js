@@ -45,14 +45,59 @@ class App extends Component {
         */
        }
             
-       <Header />
-       <Content />  
-      </div>
+       <Header header={this.state.headerText}/>
+       <Content content={this.state.contentText}/>  
+       {/*<Clock />*/}
+       
+       {
+       /* calling properties for default props
+       {this.props.header}  
+       {this.props.header}
+       */
+       }
+
+       </div>
     );
   }
 }
 
+// default propertioes created and used
+App.defaultProps = {
+  header: 'default Props for header..',
+  content: 'default Props for content..'
+}
 
+class Clock extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount(){
+    this.timeID = setInterval(
+    () => {this.tick()}
+    , 1000)
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timeID)
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>The Time is: {this.state.toLocaleTimeString()}</h2>
+      </div>
+    );
+  }
+}
 
 class Header extends Component{
   render(){
@@ -102,7 +147,7 @@ class Content extends Component{
     <p  className="App-intro">
           <h1> Mwarukason ReactJS Page</h1>
           <h4> Stateless Content Component </h4>
-    
+    {this.props.content} //use of state and props
     <table>
       <thead>
         <th>
