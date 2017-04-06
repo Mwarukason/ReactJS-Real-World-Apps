@@ -8,11 +8,8 @@ var Show = require('./Show');
 
 //render Component JSX form
 ReactDOM.render(
-  <div>
-  <Show show={shows[0]}/>
-  <Show show={shows[1]}/>
-  <Show show={shows[2]}/>
-  </div>,
+  //change to start the show in given index:
+<Show shows={shows} showIndex={1}/>,
   //properties in Component in JSX
   document.getElementById('root')
 );
