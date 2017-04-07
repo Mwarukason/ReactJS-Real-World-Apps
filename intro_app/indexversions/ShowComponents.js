@@ -22,7 +22,7 @@ var ShowInfo = React.createClass({
     return (
       <div>
       <p>Plot: {this.props.showPlot}</p>
-      <h5>Rating Rank: {this.props.showRating}</h5>
+      <h5>IMDB Rating: {this.props.showRating}</h5>
       </div>
     );
   }
